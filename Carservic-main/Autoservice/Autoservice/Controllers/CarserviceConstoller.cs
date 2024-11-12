@@ -21,6 +21,11 @@ namespace Autoservice.Controllers
 
         public void RunRepair()
         {
+            const string commandGoRepair = "1";
+            const string commandCompleteRepair = "2";
+            const string commandBreakRepair = "3";
+            const string commandBlowUp = "4";
+
             while (_carservice.Vehicles.Count > 0)
             {
                 _carservice.LiftVehicle();
@@ -34,36 +39,31 @@ namespace Autoservice.Controllers
                     Console.WriteLine($"Касса: {_carservice.Money}$");
                     Console.WriteLine($"\nНеобходимо починить {_carservice.CurrentVehicle.Name}. Выберите действие:\n");
 
-                    const string GoRepair = "1";
-                    const string CompleteRepair = "2";
-                    const string BreakRepair = "3";
-                    const string BlowUp = "4";
-
                     string choice;
 
-                    Console.WriteLine($"{GoRepair}. Приступить к ремонту");
-                    Console.WriteLine($"{CompleteRepair}. Завершить ремонт");
-                    Console.WriteLine($"{BreakRepair}. Отказаться от ремонта");
-                    Console.WriteLine($"{BlowUp}. Взорвать автосервис");
+                    Console.WriteLine($"{commandGoRepair}. Приступить к ремонту");
+                    Console.WriteLine($"{commandCompleteRepair}. Завершить ремонт");
+                    Console.WriteLine($"{commandBreakRepair}. Отказаться от ремонта");
+                    Console.WriteLine($"{commandBlowUp}. Взорвать автосервис");
                     Console.Write("\nСделайте ваш выбор: ");
 
                     choice = Console.ReadLine();
 
                     switch (choice)
                     {
-                        case GoRepair:
+                        case commandGoRepair:
                             _carservice.Repair();
                             break;
 
-                        case CompleteRepair:
+                        case commandCompleteRepair:
                             _carservice.CompleteRepair(ref isWork);
                             break;
 
-                        case BreakRepair:
+                        case commandBreakRepair:
                             _carservice.BreakRepair(ref isWork);
                             break;
 
-                        case BlowUp:
+                        case commandBlowUp:
                             _carservice.BurnOut(ref isWork);
                             break;
 

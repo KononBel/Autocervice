@@ -32,9 +32,11 @@ namespace Autoservice.Models
 
         public void BreakDown()
         {
+            int chance = 50;
+
             foreach (Part part in _parts)
             {
-                if (_random.Next(0, 100) < 50)
+                if (_random.Next(0, 100) < chance)
                     part.GoBad();
             }
         }

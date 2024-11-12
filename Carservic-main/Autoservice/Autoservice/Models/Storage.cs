@@ -17,12 +17,13 @@ namespace Autoservice.Models
 
         public Part GetAvailablePart(string partName)
         {
-            Part availablePart = _parts.Find(part => part.Name == partName);
+            return _parts.Find(part => part.Name == partName);
+        }
 
-            if (availablePart != null)
-                _parts.Remove(availablePart);
-
-            return availablePart;
+        public void Remove(Part part)
+        {
+            if (part != null)
+                _parts.Remove(part);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Autoservice
         static void Main(string[] args)
         {
             int defaultVehiclesCount = 5;
-            int defaultCountPartEch = 5; //Доступное количество каждой детали на складе
+            int defaultCountPartEch = 5; 
 
             СarserviceController сarserviceController = new СarserviceController(defaultVehiclesCount, defaultCountPartEch);
 

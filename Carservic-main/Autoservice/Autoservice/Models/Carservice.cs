@@ -36,7 +36,7 @@ namespace Autoservice.Models
 
         public void AcceptVehicle(Vehicle vehicle)
         {
-            if (vehicle != null)
+            if (vehicle != null && _vehicles.Count > 0)
                 _vehicles.Enqueue(vehicle);
         }
 
@@ -58,12 +58,14 @@ namespace Autoservice.Models
                 if (part != null)
                 {
                     Part newPart = _storage.GetAvailablePart(part.Name);
+
                     if (newPart != null)
                     {
                         if (part.IsBroken)
                             _money += newPart.Cost + _repairCost;
 
                         CurrentVehicle.ReplacePart(part, newPart);
+                        _storage.Remove(newPart);
 
                         Console.WriteLine($"Деталь {part.Name} заменена в {CurrentVehicle.Name}");
                     }
@@ -110,6 +112,7 @@ namespace Autoservice.Models
         public void BurnOut(ref bool isWork)
         {
             _vehicles.Clear();
+
             _money = 0;
             isWork = false;
 
